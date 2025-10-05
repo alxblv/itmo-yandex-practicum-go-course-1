@@ -96,7 +96,7 @@ external:
 				netUtilization := bndwdthTaken * 100 / bndwdthTotal
 
 				if netUtilization > 90 {
-					fmt.Printf("Network bandwidth usage high: %d Mbit/s available\n", (bndwdthTotal-bndwdthTaken)*8/1024/1024)
+					fmt.Printf("Network bandwidth usage high: %d Mbit/s available\n", (bndwdthTotal-bndwdthTaken)/1000/1000)
 				}
 			}
 		}
