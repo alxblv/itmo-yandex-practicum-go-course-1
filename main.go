@@ -14,9 +14,11 @@ func main() {
 
 	for attempt := 0; attempt < 3; attempt++ {
 		response, err := http.Get("http://srv.msk01.gigacorp.local/_stats")
+
 		if err != nil {
-			fmt.Println(err)
+			continue // try again
 		}
+
 		defer response.Body.Close()
 
 		if response.Status == "200 OK" {
@@ -24,6 +26,8 @@ func main() {
 			scanner.Scan()
 
 			stringSlice = strings.Split(scanner.Text(), ",")
+
+			fmt.Printf("200 OK stringSlice = %v\n", stringSlice)
 			break
 		}
 
@@ -44,6 +48,7 @@ func main() {
 
 	for i := 0; i < len(stringSlice); i++ {
 
+		fmt.Printf("%d iteration %s\n", i, stringSlice[i])
 		currVal, err := strconv.Atoi(stringSlice[i])
 
 		if err != nil {
